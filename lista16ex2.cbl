@@ -1,36 +1,36 @@
       $set sourceformat"free"
 
-      *>Divisão de identificação do programa
+      *>DivisÃ£o de identificaÃ§Ã£o do programa
        identification division.
        program-id. "lista16exercicio2".
-       author. "Ivan J. Borchardt".
+       author. "Talita GonÃ§alves".
        installation. "PC".
        date-written. 16/07/2020.
        date-compiled. 16/07/2020.
 
 
 
-      *>Divisão para configuração do ambiente
+      *>DivisÃ£o para configuraÃ§Ã£o do ambiente
        environment division.
        configuration section.
            special-names. decimal-point is comma.
 
-      *>-----Declaração dos recursos externos
+      *>-----DeclaraÃ§Ã£o dos recursos externos
        input-output section.
        file-control.
 
-      *>   Declaração do arquivo
-           select arqEstadosJogo assign to "arqEstadosJogo.dat"      *>assosiando arquivo lógico (nome dado ao arquivo dentro do pmg vom o arquivo fisico)
-           organization is line sequential                   *>forma de organização dos dados
+      *>   DeclaraÃ§Ã£o do arquivo
+           select arqEstadosJogo assign to "arqEstadosJogo.dat"      *>associando arquivo lÃ³gico (nome dado ao arquivo dentro do pmg vom o arquivo fisico)
+           organization is line sequential                   *>forma de organizaÃ§Ã£o dos dados
            access mode is sequential                         *>forma de acesso aos dados
-           lock mode is automatic                            *>tratamento de dead lock - evita perda de dados em ambiemtes multi-usuários
-           file status is ws-fs-arqEstados.                  *>file status (o status da ultima operação)
+           lock mode is automatic                            *>tratamento de dead lock - evita perda de dados em ambiemtes multi-usuÃ¡rios
+           file status is ws-fs-arqEstados.                  *>file status (o status da ultima operaÃ§Ã£o)
 
 
 
        i-o-control.
 
-      *>Declaração de variáveis
+      *>DeclaraÃ§Ã£o de variÃ¡veis
        data division.
 
       *>----Variaveis de arquivos
@@ -101,11 +101,11 @@
           88  nao_trocou                           value "5".
 
 
-      *>----Variaveis para comunicação entre programas
+      *>----Variaveis para comunicaÃ§Ã£o entre programas
        linkage section.
 
 
-      *>----Declaração de tela
+      *>----DeclaraÃ§Ã£o de tela
        screen section.
        01  sc-tela-menu.
       *>                                0    1    1    2    2    3    3    4    4    5    5    6    6    7    7    8
@@ -244,7 +244,7 @@
 
 
 
-      *>Declaração do corpo do programa
+      *>DeclaraÃ§Ã£o do corpo do programa
        procedure division.
 
 
@@ -253,10 +253,10 @@
            perform finaliza.
 
       *>------------------------------------------------------------------------
-      *>  Procedimentos de inicialização
+      *>  Procedimentos de inicializaÃ§Ã£o
       *>------------------------------------------------------------------------
        inicializa section.
-      *>    inicialização da tabela de estados
+      *>    inicializaÃ§Ã£o da tabela de estados
 
            open input arqEstadosJogo
            if ws-fs-arqEstados <> 0 then
@@ -329,7 +329,7 @@
            exit.
 
       *>------------------------------------------------------------------------
-      *>  Cadastro de jogadores, sao admitidos até 4 jogadores
+      *>  Cadastro de jogadores, sao admitidos atÃ© 4 jogadores
       *>------------------------------------------------------------------------
        cadastrar-jogadores section.
 
@@ -343,7 +343,7 @@
 
                move space     to   ws-msn
 
-               if ws-nome-jogador <> space then  *> Consistindo a digitação do User, nomes = spaces  são ignorados
+               if ws-nome-jogador <> space then  *> Consistindo a digitaÃ§Ã£o do User, nomes = spaces  sÃ£o ignorados
                    perform descobrir-prox-ind-jog
                    if ws-ind-jog <= 4 then  *> Consistencia da quantidade de jogadores para evitar estouro de tabela
 
@@ -427,7 +427,7 @@
 
 
       *>------------------------------------------------------------------------
-      *>   Descobrir a proxima posição livre dentro da tabela de jogadores
+      *>   Descobrir a proxima posiÃ§Ã£o livre dentro da tabela de jogadores
       *>------------------------------------------------------------------------
        descobrir-prox-ind-jog section.
            perform varying ws-ind-jog from 1 by 1 until ws-ind-jog > 4
@@ -457,7 +457,7 @@
 
 
       *>------------------------------------------------------------------------
-      *>   Imprimindo relatório final
+      *>   Imprimindo relatÃ³rio final
       *>------------------------------------------------------------------------
        relatorio-final section.
 
@@ -480,7 +480,7 @@
 
 
       *>------------------------------------------------------------------------
-      *>   Ordenação da tabela de jogadores
+      *>   OrdenaÃ§Ã£o da tabela de jogadores
       *>------------------------------------------------------------------------
        ordenar-jogadores section.
            set trocou  to true
@@ -493,7 +493,7 @@
                perform until ws-ind-jog = 4
                        or    ws-nome-jog(ws-ind-jog + 1) = space
       *>
-                   if ws-pontos(ws-ind-jog) < ws-pontos(ws-ind-jog + 1) then  *> critério de ordenação é "pontos do jogador"
+                   if ws-pontos(ws-ind-jog) < ws-pontos(ws-ind-jog + 1) then  *> critÃ©rio de ordenaÃ§Ã£o Ã© "pontos do jogador"
       *>               FAZ TROCA...
                        move ws-jogadores(ws-ind-jog + 1)  to  ws-jogadores-aux
                        move ws-jogadores(ws-ind-jog)      to  ws-jogadores(ws-ind-jog + 1)
@@ -510,7 +510,7 @@
        ordenar-jogadores-exit.
            exit.
       *>------------------------------------------------------------------------
-      *>  Finalização  Anormal
+      *>  FinalizaÃ§Ã£o  Anormal
       *>------------------------------------------------------------------------
        finaliza-anormal section.
            display erase
@@ -521,7 +521,7 @@
            exit.
 
       *>------------------------------------------------------------------------
-      *>  Finalização
+      *>  FinalizaÃ§Ã£o
       *>------------------------------------------------------------------------
        finaliza section.
            stop run
